@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { StyledContact } from "./ContactItem.styled";
 
-function ContactItem({ name, number, onDelete }) {
+function ContactItem({ contact: { name, number }, onDelete }) {
   return (
     <StyledContact>
       {name}: {number}

@@ -2,11 +2,7 @@ const STORAGE_NAME = "contacts";
 
 export const loadContacts = () => {
   const contacts = localStorage.getItem(STORAGE_NAME);
-  if (contacts) {
-    return JSON.parse(contacts);
-  }
-
-  return [];
+  return contacts ? JSON.parse(contacts) : [];
 };
 
 export const saveContacts = (contacts) => {
