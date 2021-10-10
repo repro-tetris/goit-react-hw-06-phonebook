@@ -4,13 +4,10 @@ import { connect } from "react-redux";
 import { delContact } from "../../../redux/contacts/items/contacts-item-actions";
 
 const ContactList = ({ contacts, onDelete }) => {
-  console.log("contacts:", contacts);
   return (
     <div>
       <ul>
         {contacts.map((contact) => {
-          console.log(contact);
-
           return (
             <ContactItem
               key={contact.id}

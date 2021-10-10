@@ -4,8 +4,6 @@ import { Label } from "./Filter.styled";
 import { changeFilter } from "../../redux/contacts/filter/contacts-filter-actions";
 
 function Filter({ onFilter, filterStr }) {
-  console.log("onFilter", onFilter);
-  console.log("filterStr", filterStr);
   return (
     <Label>
       Find contacts by name
