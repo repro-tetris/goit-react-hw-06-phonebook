@@ -1,6 +1,3 @@
-import { CHANGE_FILTER } from "./contacts-filter-types";
+import { createAction } from "@reduxjs/toolkit";
 
-export const changeFilter = (str) => ({
-  type: CHANGE_FILTER,
-  payLoad: str,
-});
+export const changeFilter = createAction("contact/changeFilter");

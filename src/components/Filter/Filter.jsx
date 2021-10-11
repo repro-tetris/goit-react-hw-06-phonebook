@@ -1,27 +1,26 @@
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import { Label } from "./Filter.styled";
 import { changeFilter } from "../../redux/contacts/filter/contacts-filter-actions";
 
-function Filter({ onFilter, filterStr }) {
+function Filter() {
+  const filterStr = useSelector((state) => state.contacts.filter);
+  const dispatch = useDispatch();
+
   return (
     <Label>
       Find contacts by name
-      <input name="filter" value={filterStr} onChange={onFilter}></input>
+      <input
+        name="filter"
+        value={filterStr}
+        onChange={(e) => dispatch(changeFilter(e.target.value.toLowerCase()))}
+      ></input>
     </Label>
   );
 }
-
-const mapStateToProps = (state) => ({
-  filterStr: state.contacts.filter,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onFilter: (e) => dispatch(changeFilter(e.target.value.toLowerCase())),
-});
 
 Filter.propTypes = {
   onFilter: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default Filter;

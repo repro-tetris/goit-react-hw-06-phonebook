@@ -1,11 +1,6 @@
-import { createStore, combineReducers } from "redux";
-import { devToolsEnhancer } from "redux-devtools-extension";
+import { configureStore } from "@reduxjs/toolkit";
 import contactReducer from "./contacts";
 import { loadContacts, saveContacts } from "../components/utils/storage";
-
-const rootReducer = combineReducers({
-  contacts: contactReducer,
-});
 
 const persistedState = {
   contacts: {
@@ -13,7 +8,13 @@ const persistedState = {
   },
 };
 
-const store = createStore(rootReducer, persistedState, devToolsEnhancer());
+const store = configureStore({
+  reducer: {
+    contacts: contactReducer,
+  },
+  preloadedState: persistedState,
+  devTools: process.env.NODE_ENV === "development",
+});
 
 store.subscribe(() => {
   saveContacts(store.getState().contacts.items);

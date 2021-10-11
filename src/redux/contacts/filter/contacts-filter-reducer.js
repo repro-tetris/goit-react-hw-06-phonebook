@@ -1,11 +1,8 @@
-import { CHANGE_FILTER } from "./contacts-filter-types";
+import { createReducer } from "@reduxjs/toolkit";
+import { changeFilter } from "./contacts-filter-actions";
 
-export default function filterReducer(state = "", { type, payLoad }) {
-  switch (type) {
-    case CHANGE_FILTER:
-      return payLoad;
+const filterReducer = createReducer("", {
+  [changeFilter]: (_, action) => action.payload,
+});
 
-    default:
-      return state;
-  }
-}
+export default filterReducer;

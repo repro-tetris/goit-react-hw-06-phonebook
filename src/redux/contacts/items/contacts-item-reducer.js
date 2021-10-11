@@ -1,20 +1,19 @@
+import { createReducer } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from "uuid";
-import { CONTACT_ADD, CONTACT_DEL } from "./contacts-item-types";
+import { addContact, delContact } from "./contacts-item-actions";
 
-export default function itemsReducer(state = [], { type, payLoad }) {
-  switch (type) {
-    case CONTACT_ADD:
-      const { name, number } = payLoad;
-      const contact = {
-        id: uuidv4(),
-        name,
-        number,
-      };
-      return [...state, contact];
+const itemsReducer = createReducer([], {
+  [addContact]: (state, { payload }) => {
+    const { name, number } = payload;
+    const contact = {
+      id: uuidv4(),
+      name,
+      number,
+    };
+    return [...state, contact];
+  },
+  [delContact]: (state, action) =>
+    state.filter(({ id }) => id !== action.payload),
+});
 
-    case CONTACT_DEL:
-      return state.filter(({ id }) => id !== payLoad);
-    default:
-      return state;
-  }
-}
+export default itemsReducer;

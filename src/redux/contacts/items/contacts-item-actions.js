@@ -1,11 +1,4 @@
-import { CONTACT_ADD, CONTACT_DEL } from "./contacts-item-types";
+import { createAction } from "@reduxjs/toolkit";
 
-export const addContact = (contact) => ({
-  type: CONTACT_ADD,
-  payLoad: contact,
-});
-
-export const delContact = (id) => ({
-  type: CONTACT_DEL,
-  payLoad: id,
-});
+export const addContact = createAction("contact/add");
+export const delContact = createAction("contact/del");
